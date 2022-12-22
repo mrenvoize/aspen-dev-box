@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+    aspenselfcontained:
+        build:
+          dockerfile: $ASPEN_DOCKER/dockerfile
+        volumes:
+            - '$ASPEN_DEV_BOX/aspen-clone:/usr/local/aspen-discovery'
+        ports:
+            - '8084:8080'
+            - '8083:80'
+        container_name: containeraspen
+        image: aspendocker
+        networks:
+          - aspennet
+        tty: true
+        command: sh -c "cp -R /test.localhostaspen /usr/local/aspen-discovery/sites/" && "service apache2 start" && "su aspen" && "/usr/local/aspen-discovery/sites/test.localhostaspen/conf/test.localhostaspen.sh start"
+
+
+    mariadb:
+        container_name: aspen-mariadb
+        environment:
+            - MARIADB_ROOT_PASSWORD=aspen
+            - MARIADB_DATABASE:aspen
+            - MARIADB_USER:aspensuper
+            - MARIADB_PASSWORD:aspensuper
+        image: 'mariadb:latest'
+        volumes:
+          - $ASPEN_DOCKER/setup.sql:/docker-entrypoint-initdb.d/init-script.sql
+        networks:
+          - aspennet
+networks:
+     aspennet:
+
