@@ -10,12 +10,11 @@ This is an Aspen-discovery Docker instance designed to make developing Aspen eas
 ```sh
 git clone https://github.com/Jacobomara901/aspen-dev-box.git
 ```
-- Add these alias's to your bash/zshrc (amending the paths appropriately) and initialise your terminal again to source them.
+- Add these aliases to your bash/zshrc (amending the paths appropriately) and initialise your terminal again to source them.
 
 
-
-```
 The parent folder that contains both your aspen clone directory and your aspen-dev-box directory
+```
 export ASPEN_DEV_BOX=~/aspendockerstruct
 
 export ASPEN_DOCKER=$ASPEN_DEV_BOX/aspen-dev-box
