@@ -4,7 +4,7 @@ services:
         build:
           dockerfile: $ASPEN_DOCKER/dockerfile
         volumes:
-            - '$ASPEN_DEV_BOX/aspen-clone:/usr/local/aspen-discovery'
+            - '$ASPEN_DEV_BOX/aspen-discovery:/usr/local/aspen-discovery'
         ports:
             - '8084:8080'
             - '8083:80'
