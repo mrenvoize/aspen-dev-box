@@ -12,7 +12,8 @@ services:
         container_name: containeraspen
         image: aspendocker
         networks:
-          - aspennet
+           external:
+
         tty: true
 
 
@@ -23,11 +24,13 @@ services:
             - MARIADB_DATABASE:aspen
             - MARIADB_USER:aspensuper
             - MARIADB_PASSWORD:aspensuper
+            - MYSQL_TCP_PORT:7000
         image: 'mariadb:latest'
         volumes:
           - $ASPEN_DOCKER/setup.sql:/docker-entrypoint-initdb.d/init-script.sql
         networks:
-          - aspennet
-networks:
-     aspennet:
+          external:
 
+networks:
+   external:
+        name: koha_kohanet
