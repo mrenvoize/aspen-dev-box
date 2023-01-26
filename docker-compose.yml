@@ -4,7 +4,8 @@ services:
         build:
           dockerfile: $ASPEN_DOCKER/dockerfile
         volumes:
-            - '$ASPEN_DEV_BOX/aspen-discovery:/usr/local/aspen-discovery'
+            - '$ASPEN_CLONE:/usr/local/aspen-discovery'
+            - '$ASPEN_DOCKER/site/:/usr/local/aspen-discovery/sites/test.localhostaspen'
         ports:
             - '8084:8080'
             - '8083:80'
@@ -13,7 +14,6 @@ services:
         networks:
           - aspennet
         tty: true
-        command: sh -c "cp -R /test.localhostaspen /usr/local/aspen-discovery/sites/" && "service apache2 start" && "su aspen" && "/usr/local/aspen-discovery/sites/test.localhostaspen/conf/test.localhostaspen.sh start"
 
 
     mariadb:

@@ -6,7 +6,7 @@ RUN apt-get update && \
       sudo \
       wget \
       software-properties-common
-RUN git clone https://github.com/mdnoble73/aspen-discovery.git /usr/local/aspen-discovery
+RUN git clone --depth 1 https://github.com/mdnoble73/aspen-discovery.git /usr/local/aspen-discovery
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 RUN add-apt-repository "deb https://packages.sury.org/php/ $(lsb_release -sc) main"
 RUN apt-get update
@@ -41,5 +41,6 @@ COPY --chown=aspen:aspen /etc /etc
 COPY --chown=aspen:aspen /data /data
 COPY --chown=aspen:aspen /site /test.localhostaspen
 COPY dockerrun.sh /
-CMD /bin/bash -c "cp -R /test.localhostaspen /usr/local/aspen-discovery/sites/;"
-ENTRYPOINT /bin/bash
+RUN chmod +x /dockerrun.sh
+ENTRYPOINT [ "/dockerrun.sh" ]
+CMD [ "sleep", "infinity" ]
