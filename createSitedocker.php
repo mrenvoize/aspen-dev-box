@@ -8,8 +8,10 @@ echo("This will create the proper directories and configuration files for a new 
 
 $operatingSystem = php_uname('s');
 if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'){
+    echo "Running on windows";
 	$runningOnWindows = true;
 }else{
+    echo "Running on linux";
 	$runningOnWindows = false;
 }
 
@@ -214,7 +216,7 @@ $siteDir = $installDir . '/sites/' . $sitename;
 
 $clearExisting = false;
 if (file_exists($siteDir)){
-	$clearExisting = readline ("The site directory already exists, do you want to remove the existing configuration (y/N)? ");
+	$clearExisting = 'N'; #readline ("The site directory already exists, do you want to remove the existing configuration (y/N)? ");
 	if (empty($clearExisting) || ($clearExisting != 'Y' && $clearExisting != 'y')){
 		die();
 	}else{

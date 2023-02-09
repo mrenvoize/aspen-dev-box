@@ -13,9 +13,9 @@ services:
         image: aspendocker
         networks:
            external:
-
         tty: true
-
+        environment:
+          LOCAL_USER_ID: ${LOCAL_USER_ID}
 
     mariadb:
         container_name: aspen-mariadb
