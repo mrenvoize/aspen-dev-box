@@ -76,7 +76,7 @@ cp -v /usr/local/aspen-discovery/install/rngd.service /usr/lib/systemd/system/rn
 chown -R aspen:aspen /usr/local/aspen-discovery
 #Now change files back for those that need apache to own them
 mkdir -v -p /usr/local/aspen-discovery/tmp || {
-    echo "Failed to mkdir"
+    echo "Failed to mkdir 1"
     exit 1
 }
 chown -R www-data:aspen_apache /usr/local/aspen-discovery/tmp
@@ -85,6 +85,7 @@ chown -R www-data:aspen_apache /usr/local/aspen-discovery/code/web
 chown -R www-data:aspen_apache /usr/local/aspen-discovery/sites
 chown -R aspen:aspen_apache /usr/local/aspen-discovery/sites/default
 chown -R solr:aspen /usr/local/aspen-discovery/sites/default/solr-7.6.0
+chmod -R 775 /usr/local/aspen-discovery/sites/default/solr-7.6.0/server/logs
 
 #Change file permissions so /data is owned by the aspen user
 mkdir -v -p /data/aspen-discovery
