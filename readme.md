@@ -52,9 +52,31 @@ export ASPEN_DOCKER=$ASPEN_DEV_BOX/aspen-dev-box
 
 **Note:** you will need to log out and log back in (or start a new terminal window) for this to take effect.
 
-* Now you can start up your devbox
+## Running the dev box
+
+Now you can start up your devbox
 
 ```shell
 cd aspen-dev-box
 docker compose up
 ```
+
+### Accessing the console
+
+You should now be able to access the console using:
+
+```shell
+docker exec -it containeraspen bash
+```
+
+### Getting to the web interface
+
+The IP address of the web server in your docker group will be variable. Once you are in with SSH, issuing a
+
+```shell
+ip a
+```
+should display the IP address of the webserver. At this point the web interface of Aspen can be accessed by going to
+http://<the displayed IP>:8083 for the Aspen UI
+http://<the displayed IP>:8084 for the Solr UI
+
